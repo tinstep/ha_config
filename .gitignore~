@@ -29,4 +29,5 @@ nest.conf
 ipchange.yaml
 production_auth.json
 fitbit*
-
+*.~
+.ios.*
