@@ -1,0 +1,50 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   15/07/2018
+#   @package        :   
+#   @description    :   Turn on when motion on stairs
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+
+
+    
+input_number:
+
+input_select:
+
+sensor:
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+- id: movement_stairs_light_on
+  alias: Turn on upstairs lights.
+  trigger:
+    platform: state
+    entity_id:  binary_sensor.motion_sensor_158d0001d91e20
+    from: 'off'
+    to: 'on'
+  condition:
+#    # Assume people are up and lights are on.
+#    -  condition: numeric_state
+#       entity_id: sensor.illumination_7811dcdee975
+#       below: 200
+#    # only do at night
+    -  condition: template
+       value_template: "{{ -1.0 > states.sun.sun.attributes.elevation }}"
+#    -  condition: time
+#       after: '21:00:00'
+#       before: '07:00:00'
+  action:
+    service: light.turn_on
+    data:
+      entity_id: light.upstairs_server, light.upstairs_door
+      kelvin: 3500
+      brightness: 255
+      transition: 7
+

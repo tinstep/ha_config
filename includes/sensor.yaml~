@@ -1,0 +1,115 @@
+#### sensors.yaml ####
+
+# Weather Prediction
+  - platform: bom
+    station: IDV60901.94865
+    name: Melbourne
+    monitored_conditions:
+      - apparent_t
+      - cloud
+      - delta_t
+      - gust_kmh
+      - air_temp
+      - dewpt
+      - press
+      - rain_trace
+      - rel_hum
+      - wind_dir
+      - wind_spd_kmh
+
+# SSL Cert for HA
+  - platform: cert_expiry
+    host: !secret host_fqdn
+    port: 443
+
+# For the serial conection to arduino
+  - platform: serial
+    name: Upstairs Temp
+    serial_port: /dev/ttyACM0
+#    value_template: '{{ float(sensor.upstairs_temp) }}'
+    unit_of_measurement: "°C"
+
+# Sabnzbd
+#  - platform: sabnzbd
+#    host: 192.168.0.10
+#    port: 8080
+#    api_key: cbb34105da902ae83efe8bb78d203344
+#    monitored_variables:
+#      - 'current_status'
+#      - 'speed'
+#      - 'queue_size'
+#      - 'queue_remaining'
+#      - 'disk_size'
+#      - 'disk_free'
+#      - 'queue_count'
+
+# Deluge
+  - platform: deluge
+    host: 192.168.0.10
+    username: dipstick
+    password: dsX4411
+    monitored_variables:
+      - 'current_status'
+      - 'download_speed'
+      - 'upload_speed'
+
+# Speedtest
+  - platform: speedtest
+    minute: 28
+    hour:
+      - 0
+      - 6
+      - 12
+      - 18
+    monitored_conditions:
+      - ping
+      - download
+      - upload
+    warnings: off
+
+#  templating
+  - platform: template
+    sensors:
+      rm1_xiaomi_temp_batt:
+        friendly_name: "Ayla's Temp Sensor battery"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.temperature_158d000208ff21.attributes.battery_level }}"
+      rm2_xiaomi_temp_batt:
+        friendly_name: "Our Temp Sensor battery"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.temperature_158d00022eced8.attributes.battery_level }}"
+      rm3_xiaomi_temp_batt:
+        friendly_name: "Eleanor's Temp Sensor battery"
+        unit_of_measurement: '%'
+        value_template: "{{ states.sensor.temperature_158d00020193b7.attributes.battery_level }}"
+      sun_state:
+        friendly_name: "Sun State"
+        value_template: >-
+          {% if is_state('sun.sun', 'above_horizon') %}
+            up
+          {% else %}
+            down
+          {% endif %}
+      zotac_storage:
+        value_template: '{{ states.sensor.sabnzbd_disk.state | multiply(0.001024) | round(2)  }}'
+        friendly_name: 'Zotac Share Disk Size'
+        unit_of_measurement: 'TB'
+      zotac_storage_free:
+        value_template: '{{ states.sensor.sabnzbd_disk_free.state | multiply(0.001024) | round(2)  }}'
+        friendly_name: 'Zotac Share Free Space'
+        unit_of_measurement: 'TB'
+
+# mi flora / plant care
+  - platform: miflora
+    mac: C4:7C:8D:66:0A:08
+    name: Garden Pots
+    force_update: false
+    median: 2
+    cache_value: 4800
+    timeout: 40
+    monitored_conditions:
+      - moisture
+      - light
+      - temperature
+      - conductivity
+      - battery

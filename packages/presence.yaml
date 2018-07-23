@@ -1,0 +1,297 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   14/07/2018
+#   @package        :   
+#   @description    :   
+#   @url            :   
+###############################################################################
+homeassistant:
+  customize:
+    sensor.carrick_status:
+#      entity_picture: https://upload.wikimedia.org/wikipedia/commons/0/08/Creative-Tail-Animal-frog.svg
+       entity_picture: /local/tmpCam.svg
+    sensor.sally_status:
+#      entity_picture: https://upload.wikimedia.org/wikipedia/commons/2/21/Creative-Tail-Animal-bird.svg
+       entity_picture: /local/tmpSal.svg
+
+group:
+  people_status:
+    name: People Status
+    entities:
+      - sensor.carrick_status
+      - sensor.sally_status
+
+input_number:
+
+input_select:
+  cam_status_dropdown:
+    name: Carrick
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Work
+      - Just Arrived Work
+      - Just Left Work
+      - Extended Away
+    initial: Home
+  sal_status_dropdown:
+    name: Sally
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Work
+      - Just Arrived Work
+      - Just Left Work
+      - Extended Away
+    initial: Home
+
+sensor:
+  - platform: template
+    sensors:
+      carrick_status:
+        value_template: '{{ states.input_select.cam_status_dropdown.state }}'
+        friendly_name: 'Cam'
+      sally_status:
+        value_template: '{{ states.input_select.sal_status_dropdown.state }}'
+        friendly_name: 'Sal'
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+- alias: Mark person as just arrived
+  trigger:
+    - platform: state
+      entity_id: device_tracker.p2logger
+      from: 'not_home'
+      to: 'home'
+    - platform: state
+      entity_id: device_tracker.sally_iphone
+      from: 'not_home'
+      to: 'home'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'device_tracker.p2logger' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: >
+          {% if trigger.entity_id == 'device_tracker.p2logger' %}
+            {% if states.input_select.cam_status_dropdown.state == 'Just Left' %}
+              Home
+            {% else %}
+              Just Arrived
+            {% endif %}
+          {% else %}
+            {% if states.input_select.sal_status_dropdown.state == 'Just Left' %}
+              Home
+            {% else %}
+              Just Arrived
+            {% endif %}
+          {% endif %}
+
+
+- alias: Mark person as just arrived Work
+  trigger:
+    - platform: state
+      entity_id: device_tracker.p2logger
+      from: 'not_home'
+      to: 'Work'
+    - platform: state
+      entity_id: device_tracker.sally_iphone
+      from: 'not_home'
+      to: 'Work'
+    - platform: state
+      entity_id: device_tracker.p2logger
+      from: 'Away'
+      to: 'Work'
+    - platform: state
+      entity_id: device_tracker.sally_iphone
+      from: 'Away'
+      to: 'Work'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'device_tracker.p2logger' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: Just Arrived Work
+
+
+- alias: Mark person as just left Work
+  trigger:
+    - platform: state
+      entity_id: device_tracker.p2logger
+      from: 'Work'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.sally_iphone
+      from: 'Work'
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'device_tracker.p2logger' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: Just Left Work
+
+
+- alias: Mark person as home
+  trigger:
+    - platform: state
+      entity_id: input_select.cam_status_dropdown
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.sal_status_dropdown
+      to: 'Just Arrived'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.cam_status_dropdown
+      from: 'Just Left'
+      to: 'Just Arrived'
+    - platform: state
+      entity_id: input_select.sal_status_dropdown
+      from: 'Just Left'
+      to: 'Just Arrived'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.cam_status_dropdown' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: Home
+
+- alias: Mark person as just left
+  trigger:
+    - platform: state
+      entity_id: device_tracker.p2logger
+      from: 'home'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.sally_iphone
+      from: 'home'
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'device_tracker.p2logger' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: Just Left
+
+
+- alias: Mark person as away
+  trigger:
+    - platform: state
+      entity_id: input_select.cam_status_dropdown
+      to: 'Just Left'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.sal_status_dropdown
+      to: 'Just Left'
+      for:
+        minutes: 10
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.cam_status_dropdown' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: Away
+
+
+- alias: Mark person left work
+  trigger:
+    - platform: state
+      entity_id: input_select.cam_status_dropdown
+      to: 'Just Left Work'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.sal_status_dropdown
+      to: 'Just Left Work'
+      for:
+        minutes: 10
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.cam_status_dropdown' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: Away
+
+- alias: Mark person at work
+  trigger:
+    - platform: state
+      entity_id: input_select.cam_status_dropdown
+      to: 'Just Arrived Work'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_select.sal_status_dropdown
+      to: 'Just Arrived Work'
+      for:
+        minutes: 10
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.cam_status_dropdown' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: Work
+
+
+- alias: Mark person as extended away
+  trigger:
+    - platform: state
+      entity_id: input_select.cam_status_dropdown
+      to: 'Away'
+      for:
+        hours: 24
+    - platform: state
+      entity_id: input_select.sal_status_dropdown
+      to: 'Away'
+      for:
+        hours: 24
+  action:
+    - service: input_select.select_option
+      data_template:
+        entity_id: >
+          {% if trigger.entity_id == 'input_select.cam_status_dropdown' %}
+            input_select.cam_status_dropdown
+          {% else %}
+            input_select.sal_status_dropdown
+          {% endif %}
+        option: Extended Away

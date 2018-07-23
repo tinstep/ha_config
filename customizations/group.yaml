@@ -1,0 +1,8 @@
+#################################################################
+## Customize
+#################################################################
+    group.carrick:
+     entity_picture: /local/me.JPG
+    group.sally:
+     entity_picture: /local/sal.jpg
+

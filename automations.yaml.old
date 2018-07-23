@@ -1,0 +1,39 @@
+- id: '1525471227027'
+  alias: upstairs ac on
+  trigger:
+  - above: '25'
+    entity_id: sensor.upstairs_temp
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: sensor.upstairs_temp
+    state: 'off'
+  action:
+  - alias: ''
+    data: {}
+    service: switch.broadlink_send_packet_192_168_0_15
+- id: '1525519504364'
+  alias: upstairs air con
+  trigger:
+  - above: '26.0'
+    entity_id: sensor.upstairs_temp
+    platform: numeric_state
+  condition:
+  - condition: state
+    entity_id: switch.upstairs_ac
+    state: 'off'
+  action:
+  - alias: ''
+    data: {}
+    service: switch.turn_on
+- id: '1525520474311'
+  alias: AC On
+  trigger:
+  - above: '26.0'
+    entity_id: sensor.upstairs_temp
+    platform: numeric_state
+  condition: []
+  action:
+  - data:
+      entity_id: switch.upstairs_ac
+    service: switch.turn_on

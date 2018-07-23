@@ -1,0 +1,28 @@
+  - name: Lounge Normal
+    entities:
+        light.lounge_rear:
+            state: on
+            transition: 2
+            brightness_pct: 85
+        light.lounge_mid:
+            state: on
+            transition: 2
+            brightness_pct: 85
+        light.lounge_stereo:
+            state: on
+            transition: 2
+            brightness_pct: 85
+  - name: Lounge Dim
+    entities:
+        light.lounge_rear:
+            state: on
+            transition: 2
+            brightness_pct: 60
+        light.lounge_mid:
+            state: on
+            transition: 2
+            brightness_pct: 60
+        light.lounge_stereo:
+            state: on
+            transition: 2
+            brightness_pct: 60

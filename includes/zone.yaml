@@ -1,0 +1,12 @@
+#### zone.yaml ####
+  - name: Home
+    latitude: -37.8560232
+    longitude: 144.8956428
+    radius: 50
+    icon: mdi:account-multiple
+  - name: Work
+    latitude: -37.813986
+    longitude: 144.940231
+  - name: Sals Work
+    latitude: -37.825627
+    longitude: 144.947575

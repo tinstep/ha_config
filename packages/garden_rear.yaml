@@ -1,0 +1,47 @@
+
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   18/07/2018
+#   @package        :   
+#   @description    :   Control the rear garden
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+
+input_number:
+
+input_select:
+
+sensor:
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+- id: water_garden_pots
+  alias: Water the garden pots
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.garden_pots_moisture
+    below: 8
+    for:
+      hours: 10
+  action:
+    - service: switch.turn_on
+      entity_id: switch.garden_pots
+    - service: notify.autohome
+      data:
+        target: "channel/autohome"
+        message: "Garden Pots Turned On"
+        title: "Home Assistiant"
+
+
+
+
+
+    
+
+

@@ -1,0 +1,39 @@
+#################################################################
+## Customize
+#################################################################
+    #sabnzbd
+    sensor.sabnzbd_disk:
+     icon: mdi:harddisk
+    sensor.sabnzbd_disk_free:
+      icon: mdi:harddisk
+    sensor.sabnzbd_left:
+      icon: mdi:database-minus
+    sensor.sabnzbd_queue:
+      icon: mdi:database-plus
+    sensor.sabnzbd_speed:
+      icon: mdi:speedometer
+    sensor.sabnzbd_status:
+      icon: mdi:alert-circle-outline
+
+    #deluge
+    sensor.deluge_down_speed:
+      friendly_name: Deluge Download Speed
+      icon: mdi:download-network
+    sensor.deluge_up_speed:
+      friendly_name: Deluge Upload Speed
+      icon: mdi:upload-network
+    sensor.deluge_status:
+      friendly_name: Deluge Status
+      icon: mdi:water
+    switch.deluge:
+      friendly_name: Paused / Active
+      icon: mdi:play-pause
+
+    #speedtest
+    sensor.speedtest_download:
+      icon: mdi:arrow-down
+    sensor.speedtest_upload:
+      icon: mdi:arrow-up
+    sensor.speedtest_ping:
+      icon: mdi:autorenew
+

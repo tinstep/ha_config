@@ -1,0 +1,207 @@
+homeassistant:
+  # Name of the location where Home Assistant is running.
+  name: Home
+  # Location required to calculate the time the sun rises and sets.
+  latitude: !secret ha_lat
+  longitude: !secret ha_long
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 39
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Australia/Melbourne
+  packages: !include_dir_named packages
+  # customize: !include includes/customize.yaml
+  customize: !include_dir_merge_named customizations
+
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  # Uncomment this to add a password (recommended!)
+  api_password: !secret ha_password
+  # Uncomment this if you are using SSL or running in Docker etc
+  base_url: ha.carrick.me:443
+  ssl_certificate: /etc/letsencrypt/live/ha.carrick.me/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/ha.carrick.me/privkey.pem
+  cors_allowed_origins:
+    - https://google.com
+    - https://home-assistant.io
+  ip_ban_enabled: true
+  login_attempts_threshold: 4
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+
+
+updater:
+  include_used_components: true
+
+# Discover some devices automatically
+discovery:
+#  ignore:
+#     - samsung_tv
+
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+#conversation:
+
+# Enables support for tracking state changes over time.
+history:
+#  exclude:
+#    entities:
+#      - 
+# View all events in a logbook
+
+history_graph:
+  gr1:
+    name: Upstairs Temp
+    entities:
+      - sensor.upstairs_temp
+    hours_to_show: 2400
+    refresh: 120
+
+#logbook:
+#  exclude:
+#    entities:
+#      - device_tracker.00163c6da1c6
+#      - device_tracker.00163cf1e68d
+#      - device_tracker.24a07420eb7f
+#      - device_tracker.48d6d5dc93fa
+
+
+# Track the sun
+sun:
+
+ios:
+
+# Text to speech
+tts:
+  platform: google
+  language: 'en'
+
+media_player:
+  - platform: kodi
+    name: kodi
+    host: 192.168.0.11
+    port: 8080
+    username: xbmc
+    password: 1
+  - platform: samsungtv
+    host: 192.168.0.100
+    port: 8001
+    name: samsungtv
+    mac: e4:7c:f9:b7:59:24
+
+
+xiaomi_aqara:
+  discovery_retry: 10
+  gateways:
+    - host: 192.168.0.17
+      mac: 7811dcdee975
+      key: goqylp5z6h7u43mu
+
+
+input_number:
+  upstairs_temp:
+    name: Upstairs Temperature Setting
+    initial: 25
+    min: 18
+    max: 28
+    step: .5
+
+#input_select:
+#  trash_pickup_day:
+#    name: Current Rubbish Pickup Day (Every Week)
+#    options:
+#     - Monday
+#     - Tuesday
+#     - Wednesday
+#     - Thursday
+#     - Friday
+#     - Saturday
+#     - Sunday
+#    icon: mdi:delete-variant
+#  recycle_pickup_day:
+#    name: Current Recycle Pickup Day (Every Other Week)
+#    options:
+#     - Monday
+#     - Tuesday
+#     - Wednesday
+#     - Thursday
+#     - Friday
+#     - Saturday
+#     - Sunday
+#    icon: mdi:recycle
+#  recycle_pickup_week:
+#    name: Select Recycle Pickup Week based on Current Week above
+#    options:
+#     - Even Weeks
+#     - Odd Weeks
+#    icon: mdi:recycle
+
+#climate:
+#  - platform: generic_thermostat
+#    name: ayla_room_temp
+#    heater: switch.plug_158d0001f5833b
+#    target_sensor: sensor.temperature_158d000208ff21
+#    min_temp: 15
+#    max_temp: 21
+#    ac_mode: False
+#    target_temp: 18.5
+#    cold_tolerance: 0.25
+#    hot_tolerance: 0
+#    min_cycle_duration:
+#      minutes: 2
+#    initial_operation_mode: "auto"
+#    away_temp: 14
+#  - platform: generic_thermostat
+#    name: upstairs_temp
+#    heater: switch.plug_158d0001f5833b
+#    target_sensor: sensor.upstairs_temp
+#    min_temp: 15
+#    max_temp: 30
+#    ac_mode: true
+#    target_temp: 26
+#    cold_tolerance: 0.75
+#    hot_tolerance: 0
+#    min_cycle_duration:
+#      minutes: 4
+#    initial_operation_mode: "auto"
+
+
+# https://github.com/Instagraeme/Home-Assistant-Configuration/blob/master/configuration.yaml
+####################################################
+#                                                  #
+#                     Includes                     #
+#                                                  #
+####################################################
+#automation: !include includes/automations.yaml
+#climate: !include includes/climate.yaml
+device_tracker: !include includes/device_tracker.yaml
+google_assistant: !include includes/google_assistant.yaml
+group: !include includes/group.yaml
+input_boolean: !include includes/input_boolean.yaml
+logbook: !include includes/logbook.yaml
+logger: !include includes/logger.yaml
+light: !include includes/light.yaml
+mqtt: !include includes/mqtt.yaml
+notify: !include includes/notify.yaml
+recorder: !include includes/recorder.yaml
+#scene: !include includes/scene.yaml
+#script: !include includes/script.yaml
+sensor: !include includes/sensor.yaml
+switch: !include includes/switch.yaml
+zone: !include includes/zone.yaml
+
+python_script: 
+script: !include_dir_merge_named scripts
+#shell_command: !include shell_command.yaml
+#timer: !include timers.yaml
+#panel_iframe: !include iframe.yaml

@@ -1,0 +1,120 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   14/07/2018
+#   @package        :   
+#   @description    :   
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+  kitchen1:
+    - light.kitchen_strip_left
+    - light.kitchen_strip_right
+    
+input_number:
+
+input_select:
+
+input_boolean:
+  nightmode_kitchen:
+    name: Night Mode Kitchen
+    icon: mdi:theme-light-dark
+
+sensor:
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+
+- id: state_set_night_mode_kitchen_lights
+  alias: 'set night time state kitchen light at night'
+  trigger:
+    platform: state
+    entity_id: group.lounge_lights
+    from: 'on'
+    to: 'off'
+  condition:
+    # Assume people are up and lights are on.
+#    -  condition: numeric_state
+#       entity_id: sensor.illumination_7811dcdee975
+#       below: 200
+    # only do at night
+    -  condition: template
+       value_template: "{{ -9.0 > states.sun.sun.attributes.elevation }}"
+    # only if lounge_lights are off
+#    -  condition: state
+#       entity_id: group.lounge_lights
+#       state: 'off'
+  action:
+   - service: light.lifx_set_state
+     data:
+       entity_id: group.kitchen1
+       power: False
+       color_name: red
+       brightness: 75
+       transition: 8
+   - service: input_boolean.turn_on
+     data:
+       entity_id: input_boolean.nightmode_kitchen
+
+
+- id: motion_on_kitchen_light_on
+  alias: 'turn on kitchen light red at night'
+  trigger:
+    platform: state
+    entity_id:  binary_sensor.motion_sensor_158d0001a9e425
+    from: 'off'
+    to: 'on'
+  condition:
+    # Assume people are up and lights are on.
+    -  condition: numeric_state
+       entity_id: sensor.illumination_7811dcdee975
+       below: 200
+    # only do at night
+    -  condition: template
+       value_template: "{{ -9.0 > states.sun.sun.attributes.elevation }}"
+    # only if lounge_lights are off
+    -  condition: state
+       entity_id: group.lounge_lights
+       state: 'off'
+  action:
+   - service: light.turn_on
+     entity_id: group.kitchen1
+     
+     
+- id: motion_off_kitchen_light_off
+  alias: 'turn off kitchen light red at night'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.motion_sensor_158d0001a9e425
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 3
+  condition:
+    condition: state
+    entity_id: input_boolean.nightmode_kitchen
+    state: 'on'
+  action:
+    - service: light.turn_off
+      entity_id: group.kitchen1
+      
+
+- id: state_set_day_mode_kitchen_lights
+  alias: 'set kitchen lights to day settings'
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '+01:00:05'
+  action:
+   - service: light.lifx_set_state
+     data:
+       entity_id: light.kitchen_strip_left
+       brightness: 100
+       kelvin: 3000
+   - service: input_boolean.turn_off
+     data:
+       entity_id: input_boolean.nightmode_kitchen

@@ -1,0 +1,8 @@
+#### mqtt.yaml ####
+  broker: 192.168.0.14
+  port: 1883
+  keepalive: 60
+  client_id: home-assistant-1
+  username: mozzie
+  password: dsX4411
+  protocol: 3.1.1

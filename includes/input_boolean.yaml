@@ -1,0 +1,32 @@
+############################################################
+#
+# Home Assistant Input Boolean
+#
+############################################################
+
+guest_mode:
+  name: Guest Mode
+  initial: off
+  icon: mdi:account-alert
+speech_notifications:
+  name: Speech Notifications
+  initial: on
+  icon: mdi:text-to-speech
+disable_sunset_notification:
+  name: Disable Sunset Notification
+  initial: off
+  icon: mdi:weather-sunset-down
+disable_media_player_light_control:
+  name: Disable Media Player Light Control
+  initial: off
+  icon: mdi:play-pause
+party_mode:
+  name: Party Mode
+  initial: off
+  icon: mdi:amplifier
+vacation_mode:
+  name: Vacation Mode
+  initial: off
+  icon: mdi:beach
+rubbish_reminder:
+  name: Rubbish Reminder

@@ -1,0 +1,427 @@
+#- id: a_sunset
+#  alias: Sunset
+#  initial_state: true
+#  hide_entity: false
+#  trigger:
+#  - event: sunset
+#    offset: -0:55:00
+#    platform: sun
+#  action:
+#  - data:
+#      brightness: 255
+#      color_name: white
+#      entity_id:
+#      - light.lounge_mid
+#      - light.lounge_rear
+#      - light.lounge_stereo
+#      power: true
+#      transition: 1000
+#    service: light.lifx_set_state
+
+#- id: upstairs_ac_on_temp
+#  alias: Upstairs AC turn on
+#  initial_state: true
+#  hide_entity: false
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.upstairs_temp
+#    above: 26.5
+#  condition:
+#    - condition: state
+#      entity_id: 'switch.upstairs_ac'
+#      state: 'off'
+#  action:
+#    service: switch.turn_on
+#    entity_id: switch.upstairs_ac
+
+#- id: upstairs_ac_off_temp
+#  alias: Upstairs AC turn off
+#  initial_state: true
+#  hide_entity: false
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.upstairs_temp
+#    below: 25.8
+#  condition:
+#    - condition: state
+#      entity_id: 'switch.upstairs_ac'
+#      state: 'on'
+#  action:
+#    service: switch.turn_off
+#    entity_id: switch.upstairs_ac
+
+#- id: clear_upstairs_ac_filter
+#  alias: Upstairs AC filter clear
+#  initial_state: true
+#  hide_entity: false
+#  trigger:
+#    - platform: numeric_state
+#      entity_id: sensor.upstairs_temp
+#      above: 32
+#  condition:
+#    - condition: state
+#      entity_id: 'switch.upstairs_ac'
+#      state: 'on'
+#  action:
+#    service: script.upstairs_ac_filter_clear
+
+
+##  trigger:
+##    platform: state
+##    to: 'off'
+##    entity_id: binary_sensor.motion_sensor_158d0001dc11e8
+##    for:
+##      minutes: 10
+##  action:
+##    service: homeassistant.turn_off
+##    entity_id: light.lounge_stereo
+
+#- id: wireless_sw1_dog_start
+#  alias: Let a dog bark on long press
+#  trigger:
+#    platform: event
+#    event_type: click
+#    event_data:
+#      entity_id: binary_sensor.switch_158d0001e010bf
+#      click_type: long_click_press
+#  action:
+#    service: xiaomi_aqara.play_ringtone
+#    data:
+#      gw_mac: 78:11:dc:de:e9:75
+#      ringtone_id: 22
+#      ringtone_vol: 5
+
+#- id: wireless_sw1_dog_stop
+#  alias: Stop barking immediately on single click
+#  trigger:
+#    platform: event
+#    event_type: click
+#    event_data:
+#      entity_id: binary_sensor.switch_158d0001e010bf
+#      click_type: single
+#  action:
+#    service: xiaomi_aqara.stop_ringtone
+#    data:
+#      gw_mac: 78:11:dc:de:e9:75
+
+#- id: gate_open_light_blink
+#  alias: Blink light when gate opens
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.door_window_sensor_158d0001c2fe64 
+#    from: 'off'
+#    to: 'on'
+#  action:
+#    - service: LIGHT.LIFX_EFFECT_PULSE
+#      data:
+#        entity_id: light.upstairs_server, light.lounge_stereo
+#        color_name: red
+#        period: 1
+#        mode: blink
+#        cycles: 8
+#    - service: xiaomi_aqara.play_ringtone
+#      data:
+#        gw_mac: 78:11:dc:de:e9:75
+#        ringtone_id: 10
+#        ringtone_vol: 4
+
+
+#- id: movement_night_hall_light_on
+#  alias: Turn on hallway light red at night.
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.motion_sensor_158d0001dc11e8
+#    from: 'off'
+#    to: 'on'
+#  condition:
+#    # Assume people are up and lights are on.
+#    -  condition: numeric_state
+#       entity_id: sensor.illumination_7811dcdee975
+#       below: 200
+#    # assume we arnt coming home from somewhere
+#    -  condition: state
+#       entity_id: binary_sensor.motion_sensor_158d0001a9e425
+#       state: 'off'
+#    # only do at night
+#    -  condition: template
+#       value_template: "{{ -9.0 > states.sun.sun.attributes.elevation }}"
+#    -  condition: time
+#       after: '21:00:00'
+#       before: '07:00:00'
+#  action:
+#    service: light.lifx_effect_pulse
+#    data:
+#      entity_id: light.hallway_door
+#      period: 180
+#      mode: solid
+#      color_name: red
+#      cycles: 1
+#      brightness: 25
+#      power_on: True
+
+
+#- id: no_movement_hall_light_off
+#  alias: Set light back to original settings
+#  trigger:
+#    platform: sun
+#    event: sunrise
+#    offset: '+01:00:00'
+#  action:
+#    service: light.lifx_set_state
+#    data:
+#      entity_id: light.hallway_door
+#      brightness: 100
+#      kelvin: 2700
+
+
+#- id: turn_on_outside_light
+#  alias: turn on security light
+#  trigger:
+#    platform: state
+#    entity_id: binary_sensor.door_window_sensor_158d0001c2fe64
+#    from: 'off'
+#    to: 'on'
+#  condition:
+#    - condition: template
+#      value_template: "{{ -3.0 > states.sun.sun.attributes.elevation }}"
+#  action:
+#    - service: light.lifx_effect_pulse
+#      data:
+#        entity_id: light.front_porch
+#        period: 180
+#        mode: solid
+#        color_name: white
+#        cycles: 1
+#        brightness: 250
+#        power_on: True
+#    - service: notify.autohome
+#      data:
+#        target: "channel/autohome"
+#        message: "Outside Light Turned On"
+#        title: "Home Assistiant"
+#    - service: notify.kodi
+#      data:
+#        title: "Home Assistant"
+#        message: "Front Gate has been opened!"
+#        data:
+#          displaytime: 10000
+#          icon: "warning"
+
+#- id: water_garden_pots
+#  alias: Water the garden pots
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.garden_pots_moisture
+#    below: 8
+#    for:
+#      hours: 10
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.garden_pots
+#    - service: notify.autohome
+#      data:
+#        target: "channel/autohome"
+#        message: "Garden Pots Turned On"
+#        title: "Home Assistiant"
+
+
+#- id: media_stopped
+#  alias: "Media player paused/stopped"
+#  trigger:
+#    platform: state
+#    entity_id: media_player.kodi
+#    from: 'playing'
+#    to: 'idle'
+#  condition:
+#    condition: state
+#    entity_id: sun.sun
+#    state: 'below_horizon'
+#  action:
+#    service: scene.turn_on
+#    entity_id: scene.lounge_normal
+
+
+#- id: media_started
+#  alias: "Media player playing"
+#  trigger:
+#    platform: state
+#    entity_id: media_player.kodi
+#    to: 'playing'
+#    from: 'idle'
+#  condition:
+#   - condition: state
+#      entity_id: sun.sun
+#      state: 'below_horizon'
+#    - condition: state
+#      entity_id: input_boolean.disable_media_player_light_control
+#      state: 'off'
+#  action:
+#    service: scene.turn_on
+#    entity_id: scene.lounge_dim
+
+
+#- id: ayla_heater_on
+#  alias: "Turn on Ayla's Heater"
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.temperature_158d000208ff21
+#    below: '18.0'
+#  condition:
+#    condition: time
+#    after: '18:00:00'
+#    before: '07:00:00'
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.plug_158d0001f5833b
+#    - delay:
+#        hours: 2
+#    - service: switch.turn_off
+#      entity_id: switch.plug_158d0001f5833b
+
+### Turn Heater to away mode
+##- id: ayla_heater_away_on
+##  alias: "Set heater to away mode on"
+##  trigger:
+##    platform: time
+##    at: '07:00:00'
+##  action:
+##    - service: climate.set_away_mode
+##      data:
+##        entity_id: climate.ayla_room_temp
+##        away_mode: 'True'
+
+### Turn Heater from away mode
+##- id: ayla_heater_away_off
+##  alias: "Set heater to away mode off"
+##  trigger:
+##  platform: time
+##    at: '18:00:00'
+##  condition:
+##    - condition: state
+##      entity_id: input_boolean.vacation_mode
+##      state: 'off'
+##    - condition: state
+##      entity_id: input_boolean.guest_mode
+##      state: 'off'
+##  action:
+##    - service: climate.set_away_mode
+##      data:
+##        entity_id: climate.ayla_room_temp
+##        away_mode: 'False'
+
+# Shut down for the night
+#- id: night_mode
+#  alias: "shut down for the night"
+#  service: tts.google_say
+#  entity_id: media_player.lounge_google_home
+#  data_template:
+#    message: >-
+#      {{ [
+#      "Good night. " ,
+#      "Good evening. " ,
+#      "Sweet dreams. " ,
+#      "See you tomorrow. " ,
+#      "Have a wonderful night. " ,
+#      "See you soon. " 
+#      ] |random }}
+
+
+
+#- id: ayla_heater_off
+#  alias: "Turn off Ayla's Heater"
+#  trigger:
+#    platform: time
+#    minutes: '/1'
+#    seconds: 00
+#  condition:
+#    - condition: numeric_state
+#      entity_id: sensor.temperature_158d000208ff21
+#      above: '18.9'
+#  action:
+#    - service: switch.turn_off
+#      entity_id: switch.plug_158d0001f5833b 
+
+
+#- alias: Ayla Night
+#  trigger:
+#    - platform: time
+#      minutes: '/1'
+#      seconds: 02
+#  condition:
+#    - condition: state
+#      entity_id: input_boolean.vacation_mode
+#      state: 'off'
+#    - condition: state
+#      entity_id: input_boolean.guest_mode
+#      state: 'off'
+#  action:
+#    - service: climate.set_temperature
+#      data_template:
+#        entity_id: climate.ayla_room_temp
+#        temperature: "{{ states.input_number.ayla_temp.state | float }}"
+
+
+
+#- id: Test_heater_on
+#  alias: "Turn on test plug"
+#  trigger:
+#    platform: numeric_state
+#    entity_id: sensor.upstairs_temp
+#    below: '24.0'
+#  condition:
+#    condition: time
+#    after: '16:00:00'
+#    before: '07:00:00'
+#  action:
+#    - service: switch.turn_on
+#      entity_id: switch.plug_158d00023ef26f
+#    - delay:
+#        minutes: 2
+#    - service: switch.turn_off
+#      entity_id: switch.plug_158d00023ef26f
+
+
+#- id: test_heater_off
+#  alias: "Turn off test plug"
+#  trigger:
+#    platform: time
+#    minutes: '/1'
+#    seconds: 00
+#  condition:
+#    - condition: numeric_state
+#      entity_id: sensor.upstairs_temp
+#      above: '24.9'
+#  action:
+#    - service: switch.turn_off
+#      entity_id: switch.plug_158d00023ef26f
+
+#- id: fire_alarm
+#  alias: "Fire Alarm"
+
+#    condition:
+#      condition: or
+#      conditions:
+#        - condition: state
+#          entity_id: 'device_tracker.phone1'
+#          state: 'home'
+#        - condition: state
+#          entity_id: 'device_tracker.phone2'
+#          state: 'home'
+
+
+
+
+
+#    - service: light.lifx_effect_colorloop
+#      data:
+#        entity_id: light.rm2_mainlight
+#        period: 15
+#        transition: 10
+#        change: 75
+#        brightness: 60
+#        power_on: True
+#    - delay:
+#        minutes: 5
+#    - service: light.turn_off
+#      entity_id: light.rm2_mainlight
+

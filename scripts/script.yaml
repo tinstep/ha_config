@@ -1,0 +1,43 @@
+#### script.yaml ####
+#  activate_tv:
+#    alias: Turn on TV
+#    sequence:
+#      - alias: TV on
+#        service: media_player.kodi_call_method
+#        data:
+#            entity_id: media_player.kodi
+#            method: Addons.ExecuteAddon
+#            addonid: script.json-cec
+#            params:
+#                command: activate
+
+  upstairs_ac_filter_clear:
+    sequence:
+      - service: switch.broadlink_send_packet_192_168_0_15
+        data:
+          packet:
+            - "JgDyABcAAjFjAAEmEBEQMhAREBAREBAREBEQEBEQEDEREBEQEDIQEQ8SDzIQMRExETARMRAREBAREBEQEBEQEBEREBEPERIPEBEPEg8RERAREBAQERAREBAREBAREBEQEBEQEBEREBEPERIPEBEPEhAQERARMRAxETARMRBjYgABJxAxEREPEg8REBEQEQ8RERAREBAxERAREBAxETEQERAxEBEQMhAyDzIQMRExEDERLxIxERAREBAREDIPMhAyDxIPEREQEBEQEBEQETEQEBExEDEREBExEBEQMg8REBEQERAQETEQERAQETEQMRExEDERAA0FAAAAAAAA"
+
+
+
+  colorloop_start:
+    alias: 'Start LIFX colorloop'
+    sequence:
+      - service: light.lifx_effect_colorloop
+        data:
+          entity_id: light.rm2_mainlight
+          brightness: 10
+          period: 15
+          spread: 359
+          change: 75
+      - delay:
+          minutes: 1
+#      - service: light.lifx_effect_stop
+#        entity_id: light.rm2_mainlight
+      - service: light.turn_off
+        entity_id: light.rm2_mainlight
+      - service: light.lifx_set_state
+        data:
+          entity_id: light.rm2_mainlight
+          kelvin: 6500
+          brightness_pct: 40

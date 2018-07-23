@@ -1,0 +1,87 @@
+{
+    "devices": {
+        "Sally": {
+            "app": {
+                "buildNumber": 10,
+                "bundleIdentifer": "io.robbie.HomeAssistant",
+                "versionNumber": "1.1.1"
+            },
+            "battery": {
+                "level": 74,
+                "state": "Unplugged"
+            },
+            "device": {
+                "localizedModel": "iPhone",
+                "model": "iPhone",
+                "name": "iPhone",
+                "permanentID": "219219C3-A063-47A5-854E-39FC07AE0F80",
+                "systemName": "iOS",
+                "systemVersion": "11.4",
+                "type": "iPhone 6"
+            },
+            "deviceId": "Sally",
+            "lastSeenAt": "2018-07-02T21:10:50.989993",
+            "permissions": [
+                "notifications",
+                "location"
+            ],
+            "pushId": "a3f0a491-22cc-3ca3-a13d-a183caab6790",
+            "pushSounds": [],
+            "pushToken": "This space intentionally left blank"
+        },
+        "iphone": {
+            "app": {
+                "buildNumber": 4,
+                "bundleIdentifer": "io.robbie.HomeAssistant",
+                "versionNumber": "1.0.4"
+            },
+            "battery": {
+                "level": 79,
+                "state": "Unplugged"
+            },
+            "device": {
+                "localizedModel": "iPhone",
+                "model": "iPhone",
+                "name": "iPhone",
+                "permanentID": "219219C3-A063-47A5-854E-39FC07AE0F80",
+                "systemName": "iOS",
+                "systemVersion": "10.3.2",
+                "type": "iPhone 6"
+            },
+            "deviceId": "iphone",
+            "lastSeenAt": "2017-08-06T12:33:35.188818",
+            "permissions": [
+                "location"
+            ],
+            "pushSounds": [],
+            "pushToken": "This space intentionally left blank"
+        },
+        "sally": {
+            "app": {
+                "buildNumber": 10,
+                "bundleIdentifer": "io.robbie.HomeAssistant",
+                "versionNumber": "1.1.1"
+            },
+            "battery": {
+                "level": 96,
+                "state": "Unplugged"
+            },
+            "device": {
+                "localizedModel": "iPhone",
+                "model": "iPhone",
+                "name": "iPhone",
+                "permanentID": "219219C3-A063-47A5-854E-39FC07AE0F80",
+                "systemName": "iOS",
+                "systemVersion": "11.3.1",
+                "type": "iPhone 6"
+            },
+            "deviceId": "sally",
+            "lastSeenAt": "2018-05-10T16:49:12.591762",
+            "permissions": [
+                "location"
+            ],
+            "pushSounds": [],
+            "pushToken": "This space intentionally left blank"
+        }
+    }
+}

@@ -1,0 +1,111 @@
+- id: a_sunset
+  alias: Sunset
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - event: sunset
+    offset: -0:55:00
+    platform: sun
+  action:
+  - data:
+      brightness: 255
+      color_name: white
+      entity_id:
+      - light.lounge_mid
+      - light.lounge_rear
+      - light.lounge_stereo
+      power: true
+      transition: 1000
+    service: light.lifx_set_state
+- id: upstairs_ac_on_temp
+  alias: Upstairs AC turn on
+  initial_state: true
+  hide_entity: false
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.upstairs_temp
+    above: 26
+  condition:
+    - condition: state
+      entity_id: 'switch.upstairs_ac'
+      state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.upstairs_ac
+- id: upstairs_ac_off_temp
+  alias: Upstairs AC turn off
+  initial_state: true
+  hide_entity: false
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.upstairs_temp
+    below: 24
+  condition:
+    - condition: state
+      entity_id: 'switch.upstairs_ac'
+      state: 'on'
+  action:
+    service: switch.turn_off
+    entity_id: switch.upstairs_ac
+- id: clear_upstairs_ac_filter
+  alias: Upstairs AC filter clear
+  initial_state: true
+  hide_entity: false
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.upstairs_temp
+      above: 32
+  condition:
+    - condition: state
+      entity_id: 'switch.upstairs_ac'
+      state: 'on'
+  action:
+    service: script.upstairs_ac_filter_clear
+#- id: movement_night_hall_light_on
+#   alias: Turn on hallway light red at night.   
+#trigger:
+#    platform: state
+#    entity_id: sensor.hall_motion_sensor
+#    to: 'on'
+#  action:
+#    service: light.turn_on
+#    entity_id: light.hallway_light
+#    color_name: red
+#    brightness: 175 
+#-id: timer_night_hall_light_off
+#- alias: Turn off hallway light 10 minutes after last movement
+#  trigger:
+#    platform: state
+#    entity_id: sensor.motion_sensor
+#    to: 'off'
+#    for:
+#      minutes: 10
+#  action:
+#    service: homeassistant.turn_off
+#    entity_id: light.hallway_light
+- alias: Let a dog bark on long press
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: - alias: Let a dog bark on long press
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d000xxxxxc2
+      click_type: long_click_press
+  action:
+    service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: xxxxxxxxxxxx
+      ringtone_id: 8
+      ringtone_vol: 8binary_sensor.switch_158d000xxxxxc2
+      click_type: long_click_press
+  action:
+    service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: xxxxxxxxxxxx
+      ringtone_id: 8
+      ringtone_vol: 8
+

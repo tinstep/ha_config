@@ -1,0 +1,40 @@
+  - platform: owntracks
+    max_gps_accuracy: 125
+  - platform: bluetooth_tracker
+    track_new_devices: true
+    device_id: hci0
+  - platform: mqtt
+    devices:
+     sally_iphone: 'owntracks/mozzie/sally_iphone'
+     mozzie_pixel2: 'owntracks/mozzie/pixel2'
+  - platform: unifi
+    host: 192.168.0.10
+    port: 8443
+    verify_ssl: false
+    username: ha
+    password: dsX4411
+    ssid_filter:
+      - '1bx19'
+  - platform: gpslogger
+    password: !secret gpslogger_password
+
+
+#  - platform: nmap_tracker
+#    hosts:
+#      - 192.168.0.16
+#      - 192.168.0.18
+#    home_interval: 12
+#    consider_home: 250
+#    track_new_devices: false
+  - platform: bluetooth_le_tracker
+    scan_duration: 20
+    interval_seconds: 21
+#  - platform: bluetooth_tracker
+#    request_rssi: true
+
+
+
+#  - platform: snmp
+#    host: 192.168.0.1
+#    community: public
+#    baseoid: 1.3.6.1.2.1.4.22.1.2

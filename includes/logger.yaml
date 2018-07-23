@@ -1,0 +1,9 @@
+#### logger.yaml ####
+  default: warning
+  logs:
+#    homeassistant.components.mqtt: info
+    homeassistant.components.sensor.miflora: error
+#    homeassistant.components.miflora: error
+#    homeassistant.components.sabnzbd: info
+    requests.packages.urllib3.connectionpool: critical
+#   xiaomi_gateway: debug

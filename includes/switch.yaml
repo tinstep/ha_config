@@ -1,0 +1,83 @@
+#### switches.yaml ####
+- platform: mqtt
+  name: "Garden Pots" #192.168.0.81
+  state_topic: "/esp01/button/Switch"
+  command_topic: "/esp01/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  availability_topic: "/esp01/status"
+  payload_available: "Connected"
+  payload_not_available: "Connection Lost"
+  optimistic: false
+  qos: 0
+  retain: true
+- platform: mqtt
+  name: "Garden Dripper" #192.168.0.83
+  state_topic: "/esp03/button/Switch"
+  command_topic: "/esp03/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  availability_topic: "/esp03/status"
+  payload_available: "Connected"
+  payload_not_available: "Connection Lost"
+  optimistic: false
+  qos: 0
+  retain: true
+- platform: mqtt
+  name: "Recycle Fountain" # 192.168.0.92
+  state_topic: "/s2001/button/Switch"
+  command_topic: "/s2001/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  availability_topic: "/s2001/status"
+  payload_available: "Connected"
+  payload_not_available: "Connection Lost"
+  optimistic: false
+  qos: 0
+  retain: true
+- platform: mqtt
+  name: "Fountain" #192.168.0.90 
+  state_topic: "/s2002/button/Switch"
+  command_topic: "/s2002/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  availability_topic: "/s2002/status"
+  payload_available: "Connected"
+  payload_not_available: "Connection Lost"
+  optimistic: false
+  qos: 0
+  retain: true
+- platform: mqtt
+  name: "Night Light" #192.168.0.93
+  state_topic: "/s2003/button/Switch"
+  command_topic: "/s2003/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  availability_topic: "/s2003/status"
+  payload_available: "Connected"
+  payload_not_available: "Connection Lost"
+  optimistic: false
+  qos: 0
+  retain: true
+- platform: mqtt
+  name: "Garden Lights" # 192.168.0.91
+  state_topic: "/s2004/button/Switch"
+  command_topic: "/s2004/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  availability_topic: "/s2004/status"
+  payload_available: "Connected"
+  payload_not_available: "Connection Lost"
+  optimistic: false
+  qos: 0
+  retain: true
+- platform: broadlink
+  host: 192.168.0.15
+  mac: '78:0f:77:00:d2:f3'
+  type: rm2_pro_plus
+  switches:
+    upstairs_ac:
+      friendly_name: "Upstairs AirCon"
+      command_off: 'JgBoARcAAkhiAAEnEBEQMREQERAQERAQERAREBAREDEREBEQEDIQMRAREDERMRAxEjARMBEQERAREBAQEg8REQ8REBEQEQ8REBEREBAREQ8REBIPERAQEBIPERAREBAQEg8RERAQEBEQEQ8SDxEQERAREBAREBEQETASMBFiYwABJhAxEREQEBAREBEQEQ8REBEREBAxEg8REBAxEg8QMRExETERMQ8yEDIQEBEQERAREBEPERAREBAQERASDxEQEBEQERARDxEQERAREBEQEBEQERAQERAQERAREBAREBERDxEQERAREBARDxIPERAREBEQYmQAASURMREQEQ8REBIPERARDxEQERARMRAREBEPERAyEDESMBEQETARMBIwETASMQ8yETEPMhAREBERDxIwETARMREPEg8REBEQEBEQERAxEBEQMhAxERAQMRIPETASDxIPEBEQEBEQEREPERAREBEQMRExEAANBQ=='
+#      command_on: 'JgBoARcAAkhiAAEnEg8QMhAQERAREBAREBAREBEQEDEREBAREDIQEREQEi8QMRExEDERMRAREBAREBEQEBEQEBEQEBIPERIPEg8PEg8RERAQERAREBAREBAREBAREBEQEBEQERAQEREPEhEPEg8QEQ8RERARMRAxETARMRFiYgABJxAxERAREQ8REw4SDw8SEBAREBExEBAREBEwERARMRAxETEQMhIvEDIQERAQERAREBAREBAREBEQEBEQEBEQERAQERARERASDxEPEBEQERAREBAREBAREBEQEBEQEBEQERAQERAQEg8RERASDxEPEBERYWMAAScRMBEQERAQERAQERAREBAREBEQMg8REw4SDxARDzIRMRAQETEQMRExEDERMRAyEDETLxAREBAREBExEDERMRAQERAREBAREBARERAxEw4SMA8yERAQMREQEDEREBEQEBEQERAQERAQEg8yEi8QMhAxEQANBQ=='
+      command_on: 'JgDyABoAAkZlAAElEw0TLxMOEg4TDhMOEw4SDhMOEy8QERIPEi8TDhMOEi8TLhMvEy4TLxMOEg4TDxIPDxETDhIPEg8SDhMOFA0TDRMOEw4TDhIOEw4TDhMOEg4TDxIPDxESDxIPEg4TDhMOFA0SDhMOEw4TLhMvEi8TLxNfZQABJREwEw4TDhMOEw0TDhMOEw4SDhMvEw0TDhMvEg8SMA8yEg8SLxMvEy4TLxIvEy4TLxMvEg8SDw8REy8SLxMvEw4SDhMOEw4TDRMOEw4TDhIvEy8SDxIPEi8TLxMNEw4TDhMOEg4TDhMOEy4TLxIwEi8TAA0FAAAAAAAA'

@@ -1,0 +1,250 @@
+light.lounge_stereo:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:14:20:69
+light.upstairs_door:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:13:b2:ee
+light.upstairs_server:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:14:41:e3
+light.lounge_rear:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:13:d0:27
+light.kitchen_strip_right:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:15:03:3c
+light.kitchen_strip_left:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:14:ab:0e
+light.kitchen_strip_top:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:15:03:30
+light.lounge_mid:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:14:15:6c
+media_player.upstairs_google_home:
+  config_entry_id:
+  name: Google Home upstairs
+  platform: cast
+  unique_id: 73ec4665-754a-5d89-79e9-2646cf4aed90
+media_player.lounge_google_home:
+  config_entry_id:
+  name: Google Home - Lounge
+  platform: cast
+  unique_id: 70620684-a225-8d63-7195-166759b25461
+media_player.lounge_chromecast_audio:
+  config_entry_id:
+  name: Chromecast
+  platform: cast
+  unique_id: 68ab5eac-dfcb-f22d-d608-22d2bb095062
+sensor.iphone_battery_state:
+  config_entry_id:
+  name: Sally's Battery
+  platform: ios
+  unique_id: state_iphone
+sensor.iphone_battery_state_2:
+  config_entry_id:
+  name:
+  platform: ios
+  unique_id: state_sally
+sensor.iphone_battery_level:
+  config_entry_id:
+  name:
+  platform: ios
+  unique_id: level_iphone
+sensor.iphone_battery_level_2:
+  config_entry_id:
+  name:
+  platform: ios
+  unique_id: level_sally
+sensor.humidity_158d00022eced8:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d00022eced8
+sensor.temperature_158d00022eced8:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d00022eced8
+sensor.humidity_158d00020193b7:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d00020193b7
+sensor.temperature_158d00020193b7:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d00020193b7
+switch.plug_158d0001f5833b:
+  config_entry_id:
+  name: Plug Ayla's Room
+  platform: xiaomi_aqara
+  unique_id: status158d0001f5833b
+binary_sensor.door_window_sensor_158d0001c2fe64:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001c2fe64
+binary_sensor.switch_158d0001e010bf:
+  config_entry_id:
+  name: Button Switch 1
+  platform: xiaomi_aqara
+  unique_id: status158d0001e010bf
+binary_sensor.water_leak_sensor_158d000223702c:
+  config_entry_id:
+  name: Laundry Leak Sensor
+  platform: xiaomi_aqara
+  unique_id: status158d000223702c
+sensor.illumination_7811dcdee975:
+  config_entry_id:
+  name: Xiaomi Hub
+  platform: xiaomi_aqara
+  unique_id: illumination7811dcdee975
+light.gateway_light_7811dcdee975:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: rgb7811dcdee975
+sensor.humidity_158d000208ff21:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d000208ff21
+sensor.temperature_158d000208ff21:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d000208ff21
+binary_sensor.motion_sensor_158d0001dc11e8:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001dc11e8
+switch.plug_158d00023efcae:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00023efcae
+sensor.temperature_158d000221a48a:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d000221a48a
+sensor.humidity_158d000221a48a:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d000221a48a
+sensor.temperature_158d000221a57d:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d000221a57d
+sensor.humidity_158d000221a57d:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d000221a57d
+sensor.temperature_158d000221a636:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: temperature158d000221a636
+sensor.humidity_158d000221a636:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: humidity158d000221a636
+binary_sensor.door_window_sensor_158d000234d86b:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d000234d86b
+binary_sensor.door_window_sensor_158d0002200461:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0002200461
+binary_sensor.motion_sensor_158d0001a9e425:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d0001a9e425
+light.hallway_bathroom:
+  config_entry_id:
+  name: Hallway Bathroom
+  platform: lifx
+  unique_id: d0:73:d5:13:a9:da
+light.hallway_door:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:14:5e:0c
+light.front_porch:
+  config_entry_id:
+  name: Front Outside Light
+  platform: lifx
+  unique_id: d0:73:d5:27:62:ba
+media_player.via_8237:
+  config_entry_id:
+  name: Daphile
+  platform: squeezebox
+  unique_id: 5a:c8:75:cc:16:bf
+binary_sensor.switch_158d00022419ba:
+  config_entry_id:
+  name: Button Switch 2
+  platform: xiaomi_aqara
+  unique_id: status158d00022419ba
+switch.plug_158d000246950e:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d000246950e
+switch.plug_158d00023ef26f:
+  config_entry_id:
+  name:
+  platform: xiaomi_aqara
+  unique_id: status158d00023ef26f
+binary_sensor.switch_158d000210980a:
+  config_entry_id:
+  name: Button Switch 3
+  platform: xiaomi_aqara
+  unique_id: status158d000210980a
+sensor.iphone_battery_level_3:
+  config_entry_id:
+  name:
+  platform: ios
+  unique_id: level_Sally
+sensor.iphone_battery_state_3:
+  config_entry_id:
+  name:
+  platform: ios
+  unique_id: state_Sally
+light.rm2_mainlight:
+  config_entry_id:
+  name:
+  platform: lifx
+  unique_id: d0:73:d5:13:f3:88
+binary_sensor.motion_sensor_158d0001d91e20:
+  config_entry_id:
+  name: Motion Sensor Upstairs
+  platform: xiaomi_aqara
+  unique_id: status158d0001d91e20

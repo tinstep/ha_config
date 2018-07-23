@@ -1,0 +1,194 @@
+#
+default_view:
+  view: yes
+  name: Home
+  icon: mdi:home-outline
+  entities:
+    - sensor.sun_state
+    - sensor.temperature_158d000221a636
+    - sensor.temperature_158d000221a57d
+    - sensor.humidity_158d000221a636
+    - sensor.humidity_158d000221a57d
+    - sensor.illumination_7811dcdee975
+    - binary_sensor.motion_sensor_158d0001dc11e8
+    - binary_sensor.motion_sensor_158d0001a9e425
+    - binary_sensor.water_leak_sensor_158d000223702c
+    - group.location
+    - group.automation_override
+    - group.weather
+    - media_player.kodi
+    - media_player.lounge_audio
+    - media_player.samsungtv
+    - media_player.speaker
+    - light.kitchen_strip_left
+    - light.kitchen_strip_right
+    - light.kitchen_strip_top
+    - light.lounge_mid
+    - light.lounge_rear
+    - light.lounge_stereo
+    - light.front_porch
+    - light.hallway_bathroom
+    - light.hallway_door
+#    - device_tracker.mozzie_pixel2
+    - group.trash_schedule
+    - group.people_status
+
+upstairs:
+  view: yes
+  name: Mancave
+  icon: mdi:death-star
+  entities:
+    - binary_sensor.motion_sensor_158d0001d91e20
+    - group.iotsystem
+    - group.speedtest
+    - group.sabnzbd
+    - group.deluge
+    - light.upstairs_door
+    - light.upstairs_server
+    - media_player.upstairs_speaker
+    - switch.upstairs_ac
+    - sensor.upstairs_temp
+    - switch.night_light
+#    - input_number.upstairs_temp
+    - climate.upstairs_temp
+
+bedrooms:
+  view: yes
+  name: Bedrooms
+  icon: mdi:bed-empty
+  entities:
+    - sensor.temperature_158d00022eced8
+    - sensor.temperature_158d00020193b7
+    - sensor.temperature_158d000208ff21
+    - sensor.humidity_158d00022eced8
+    - sensor.humidity_158d00020193b7
+    - sensor.humidity_158d000208ff21
+    - binary_sensor.switch_158d0001e010bf
+    - switch.plug_158d0001f5833b
+    - switch.plug_158d00023efcae
+    - light.rm2_mainlight
+#    - input_number.ayla_temp
+    - climate.ayla_room_temp
+
+backyard:
+  view: yes
+  name: Garden
+  icon: mdi:flower
+  entities:
+    - sensor.bom_melbourne_air_temp_c
+    - sensor.garden_pots_moisture
+    - sensor.garden_pots_light_intensity
+    - sensor.garden_pots_temperature
+    - switch.fountain
+    - switch.garden_dripper
+    - switch.garden_lights
+    - switch.garden_pots
+    - switch.recycle_fountain
+
+system:
+  view: yes
+  name: System
+  icon: mdi:wrench
+  entities:
+    - automation.sunset
+    - sensor.ssl_certificate_expiry
+    - sensor.garden_pots_battery
+    - sensor.rm1_xiaomi_temp_batt
+    - sensor.rm2_xiaomi_temp_batt
+    - sensor.rm3_xiaomi_temp_batt
+    - binary_sensor.door_window_sensor_158d0001c2fe64
+    - script.upstairs_ac_filter_clear
+    - script.colorloop_start
+    - group.recycle_schedule
+
+catchall:
+  name: Catch All group
+  view: yes
+  icon: mdi:magnify
+  entities:
+    - light.doesnt_exist
+###################################################
+
+# Device Tracking
+carrick:
+  name: Cam
+  view: no
+  entities:
+    - device_tracker.mozzie_pixel2
+    - device_tracker.carrick_p2
+    - device_tracker.p2logger
+
+sally:
+  name: Sal
+  view: no
+  entities:
+    - device_tracker.sally
+    - device_tracker.sally_iphone
+
+location:
+  name: Location
+  view: no
+  entities:
+    - group.carrick
+    - group.sally
+
+
+
+deluge:
+  name: Deluge
+  view: no
+  entities:
+    - sensor.deluge_down_speed
+    - sensor.deluge_up_speed
+    - sensor.deluge_status
+    - switch.deluge
+
+iotsystem:
+  name: IOT System
+  view: no
+  entities:
+    - sensor.cpu_use
+    - sensor.disk_use_
+    - sensor.ram_free
+    - sensor.received_eth0
+    - sensor.sent_eth0
+    - sensor.last_boot
+    
+lounge_lights:
+  view: no
+  entities:
+    - light.lounge_stereo
+    - light.lounge_mid
+    - light.lounge_rear
+
+hallway_lights:
+  view: no
+  entities:
+    - light.hallway_bathroom
+    - light.hallway_door
+
+
+automation_override:
+  name: Automation Override
+  control: hidden
+  entities:
+    - input_boolean.guest_mode
+    - input_boolean.speech_notifications
+    - input_boolean.party_mode
+    - input_boolean.disable_sunset_notification
+    - input_boolean.disable_media_player_light_control
+    - input_boolean.vacation_mode
+    - input_boolean.rubbish_reminder
+    - input_boolean.nightmode_kitchen
+#    - input_boolean.disable_autolock_front_door
+#    - input_boolean.disable_current_temperature_notification
+#    - input_boolean.disable_morning_notification
+#    - input_boolean.disable_afternoon_notification
+#    - input_boolean.disable_unexpected_motion_notification
+#    - input_boolean.disable_device_tampering_notification
+#    - input_boolean.disable_washing_machine_notification
+#    - input_boolean.disable_dustbin_notification
+#    - input_boolean.disable_entry_light_trent_home
+#    - input_boolean.disable_entryway_light_frontdoor
+#    - input_boolean.disable_livingroom_light_frontdoor
+#    - input_boolean.disable_auto_off_outside_heater

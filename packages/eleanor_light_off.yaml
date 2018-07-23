@@ -1,0 +1,29 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   14/07/2018
+#   @package        :   
+#   @description    :   Turn Eleanor's night light off
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+
+input_number:
+
+input_select:
+
+sensor:
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+  - alias: Turn Eleanor's night light off
+    trigger:
+    - platform: time
+      at: '20:45:00'
+    action:
+    - service: light.turn_off
+      entity_id: switch.plug_158d00023efcae 

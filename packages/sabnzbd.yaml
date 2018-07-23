@@ -1,0 +1,42 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   05/07/2018
+#   @package        :   
+#   @description    :   
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+  sabnzbd:
+    name: Sabnzbd
+    view: no
+    entities:
+      - sensor.sabnzbd_status
+      - sensor.sabnzbd_disk_free
+      - sensor.sabnzbd_speed
+      - sensor.sabnzbd_queue
+      - sensor.sabnzbd_left
+
+#input_number:
+
+#input_select:
+
+sabnzbd:
+  host: 192.168.0.10
+  port: 8080
+  name: SABnzbd
+  api_key: !secret sab_api
+  sensors:
+    - 'current_status'
+    - 'speed'
+    - 'queue_size'
+    - 'queue_remaining'
+    - 'disk_size'
+    - 'disk_free'
+    - 'queue_count'
+
+###############################################################################
+#                               Automations
+###############################################################################

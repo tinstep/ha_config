@@ -1,0 +1,8 @@
+- platform: kodi
+  name: kodi
+  host: 192.168.0.11
+  username: !secret note_kodi_user
+  password: !secret note_kodi_pass
+- platform: pushbullet
+  name: autohome
+  api_key: !secret pb_api

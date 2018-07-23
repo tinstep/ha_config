@@ -1,0 +1,14 @@
+#################################################################
+## Customize
+#################################################################
+    device_tracker.mozzie_pixel2:
+     friendly_name: Carrick
+    switch.upstairs_ac:
+     friendly_name: Upstairs Aircon
+     icon: mdi:air-conditioner
+     assumed_state: false
+    sensor.upstairs_temp:
+     friendly_name: Upstairs Temp
+     icon: mdi:temperature-celsius
+    media_player.ua46c8000_samsung_dtv_rcr:
+     friendly_name: Lounge TV

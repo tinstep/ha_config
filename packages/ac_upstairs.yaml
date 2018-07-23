@@ -1,0 +1,73 @@
+
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   18/07/2018
+#   @package        :   
+#   @description    :   Control the upstairs_ac with upatairs_temp
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+
+input_number:
+
+input_select:
+
+sensor:
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+- id: upstairs_ac_on_temp
+  alias: Upstairs AC turn on
+  initial_state: true
+  hide_entity: false
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.upstairs_temp
+    above: 26.5
+  condition:
+    - condition: state
+      entity_id: 'switch.upstairs_ac'
+      state: 'off'
+  action:
+    service: switch.turn_on
+    entity_id: switch.upstairs_ac
+
+- id: upstairs_ac_off_temp
+  alias: Upstairs AC turn off
+  initial_state: true
+  hide_entity: false
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.upstairs_temp
+    below: 25.8
+  condition:
+    - condition: state
+      entity_id: 'switch.upstairs_ac'
+      state: 'on'
+  action:
+    service: switch.turn_off
+    entity_id: switch.upstairs_ac
+
+- id: clear_upstairs_ac_filter
+  alias: Upstairs AC filter clear
+  initial_state: true
+  hide_entity: false
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.upstairs_temp
+      above: 32
+  condition:
+    - condition: state
+      entity_id: 'switch.upstairs_ac'
+      state: 'on'
+  action:
+    service: script.upstairs_ac_filter_clear
+
+    
+
+

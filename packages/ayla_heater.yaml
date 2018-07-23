@@ -1,0 +1,75 @@
+
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   18/07/2018
+#   @package        :   
+#   @description    :   Control the Ayla room temp
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+
+input_number:
+
+input_select:
+
+sensor:
+
+climate:
+  - platform: generic_thermostat
+    name: ayla_room_temp
+    heater: switch.plug_158d0001f5833b
+    target_sensor: sensor.temperature_158d000208ff21
+    min_temp: 15
+    max_temp: 21
+    ac_mode: False
+    target_temp: 18.5
+    cold_tolerance: 0.2
+    hot_tolerance: 0
+    min_cycle_duration:
+      minutes: 4
+    keep_alive:
+      minutes: 3
+    initial_operation_mode: "auto"
+    away_temp: 14
+    
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+# Turn Heater to away mode
+- id: ayla_heater_away_on
+  alias: "Set heater to away mode on"
+  trigger:
+    platform: time
+    at: '07:00:00'
+  action:
+    - service: climate.set_away_mode
+      data:
+        entity_id: climate.ayla_room_temp
+        away_mode: 'True'
+
+# Turn Heater from away mode
+- id: ayla_heater_away_off
+  alias: "Set heater to away mode off"
+  trigger:
+    platform: time
+    at: '18:00:00'
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'off'
+  action:
+    - service: climate.set_away_mode
+      data:
+        entity_id: climate.ayla_room_temp
+        away_mode: 'False'
+
+    
+
+

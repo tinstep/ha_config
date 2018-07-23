@@ -1,0 +1,42 @@
+#################################################################
+## Customize
+#################################################################
+    sensor.bom_melbourne_air_temp_c:
+      friendly_name: Air Temp
+      icon: mdi:temperature-celsius
+    sensor.bom_melbourne_cloud:
+      friendly_name: Cloud
+    sensor.bom_melbourne_delta_temp_c:
+      friendly_name: Delta Temp
+    sensor.bom_melbourne_dew_point_c:
+      friendly_name: Dew Point
+    sensor.bom_melbourne_feels_like_c:
+      friendly_name: Feels Like
+    sensor.bom_melbourne_pressure_mb:
+      friendly_name: Pressure Millibars
+    sensor.bom_melbourne_rain_today:
+      friendly_name: Chance of Rain
+    sensor.bom_melbourne_relative_humidity:
+      friendly_name: Relative Humidity
+    sensor.bom_melbourne_wind_direction:
+      friendly_name: Wind Direction
+    sensor.bom_melbourne_wind_gust_kmh:
+      friendly_name: Wind Gusting
+    sensor.bom_melbourne_wind_speed_kmh:
+      friendly_name: Wind Speed
+    device_tracker.mozzie_pixel2:
+     friendly_name: Carrick
+    switch.upstairs_ac:
+     friendly_name: Upstairs Aircon
+     icon: mdi:air-conditioner
+     assumed_state: false
+    sensor.upstairs_temp:
+     friendly_name: Upstairs Temp
+     icon: mdi:temperature-celsius
+    sensor.humidity_158d000208ff21
+     friendly_name: Ayla's room Humidity
+     icon: mdi:waves
+
+sensor.humidity_158d000208ff21     friendly_name: Upstairs Temp
+     icon: mdi:temperature-celsius
+

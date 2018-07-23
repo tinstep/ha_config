@@ -1,0 +1,63 @@
+#### switches.yaml ####
+- platform: mqtt
+  name: "Garden Pots"
+  state_topic: "esp03/relayState/Switch"
+  command_topic: "esp03/gpio/12"
+  payload_on: "1.0"
+  payload_off: "0.0"
+  optimistic: true
+  qos: 0
+  retain: true
+  value_template: '{{ value.x }}'
+- platform: mqtt
+  name: "Garden Dripper" #192.168.0.81
+  state_topic: "esp01/button/Switch"
+  command_topic: "esp01/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  optimistic: false
+  qos: 0
+  retain: true
+	- platform: mqtt
+  name: "Fountain" #192.168.0.90 
+  state_topic: "esp09/cmd"
+  command_topic: "esp09/cmd"
+  payload_on: "event,switchon"
+  payload_off: "event,switchoff"
+  optimistic: true
+  qos: 0
+  retain: true
+  value_template: '{{ value.x }}'
+- platform: mqtt
+  name: "Garden Lights" # 192.168.0.91
+  state_topic: "esp10/state"
+  command_topic: "esp10/cmd"
+  payload_on: "event,switchon"
+  payload_off: "event,switchoff"
+  optimistic: true
+  qos: 0
+  retain: true
+  value_template: '{{ value.x }}'
+- platform: mqtt
+  name: "Recycle Fountain"
+  state_topic: "/s2001/button/Switch"
+  command_topic: "/s2001/gpio/12"
+  payload_on: "1"
+  payload_off: "0"
+  availability_topic: "/s2001/status"
+  payload_available: "Connected"
+  payload_not_available: "Connection Lost"
+  optimistic: false
+  qos: 0
+  retain: false
+#  value_template: '{{ value.x }}'
+- platform: mqtt
+  name: "Night Light"
+  state_topic: "esp12/state"
+  command_topic: "esp12/cmd"
+  payload_on: "event,switchon"
+  payload_off: "event,switchoff"
+  optimistic: true
+  qos: 0
+  retain: true
+  value_template: '{{ value.x }}'

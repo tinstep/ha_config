@@ -1,0 +1,48 @@
+house_wakeup:
+  alias: House Wakeup
+  sequence:
+
+  - service: media_player.volume_set
+    alias: Wake Up Setting Volume
+    data:
+      entity_id: media_player.kodi, media_player.lounge_chromecast_audio, media_player.lounge_google_home, media_player.upstairs_google_home
+      volume_level: 0.85
+
+  - service: script.announce
+    data:
+      message: House mode changed to daytime.  Good Morning.
+
+  - service: input_boolean.turn_on
+    alias: Wake Up Turn On Annoucncements
+    data:
+      entity_id: input_boolean.speech_notifications
+
+  - service: input_boolean.turn_off
+    alias: Wake Up Turn Off Night Mode
+    data:
+      entity_id: input_boolean.nightmode_kitchen
+
+
+
+#  - service: light.turn_on
+#    alias: Wake Up Turn On Hallway
+#    data:
+#      entity_id: light.hallway_light
+#      brightness_pct: 20
+
+#  - service: light.turn_on
+#    alias: Wake Up Turn On Kitchen
+#    data:
+#      entity_id: light.kitchen_light
+#      brightness_pct: 20
+
+#  - service: switch.turn_on
+#    alias: Wake Up Turn On Flux
+#    data:
+#      entity_id: switch.flux_lights
+
+#  - alias: Wake Up Disarm
+#    service: alarm_control_panel.alarm_disarm
+#    data:
+#      entity_id: alarm_control_panel.ha_alarm
+#      code: 1234

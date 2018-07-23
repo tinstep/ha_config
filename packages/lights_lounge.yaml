@@ -1,0 +1,109 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   18/07/2018
+#   @package        :   
+#   @description    :   Control the upstairs_ac with upatairs_temp
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+
+input_number:
+
+input_select:
+
+sensor:
+
+scene:
+  - name: Lounge Normal
+    entities:
+        light.lounge_rear:
+            state: on
+            transition: 2
+            brightness_pct: 85
+        light.lounge_mid:
+            state: on
+            transition: 2
+            brightness_pct: 85
+        light.lounge_stereo:
+            state: on
+            transition: 2
+            brightness_pct: 85
+  - name: Lounge Dim
+    entities:
+        light.lounge_rear:
+            state: on
+            transition: 2
+            brightness_pct: 60
+        light.lounge_mid:
+            state: on
+            transition: 2
+            brightness_pct: 60
+        light.lounge_stereo:
+            state: on
+            transition: 2
+            brightness_pct: 60
+
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+- id: a_sunset
+  alias: Sunset
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - event: sunset
+    offset: -0:55:00
+    platform: sun
+  action:
+  - data:
+      brightness: 255
+      color_name: white
+      entity_id:
+      - light.lounge_mid
+      - light.lounge_rear
+      - light.lounge_stereo
+      power: true
+      transition: 1000
+    service: light.lifx_set_state
+    
+    
+- id: media_stopped
+  alias: "Media player paused/stopped"
+  trigger:
+    platform: state
+    entity_id: media_player.kodi
+    from: 'playing'
+    to: 'idle'
+  condition:
+    condition: state
+    entity_id: sun.sun
+    state: 'below_horizon'
+  action:
+    service: scene.turn_on
+    entity_id: scene.lounge_normal
+
+
+- id: media_started
+  alias: "Media player playing"
+  trigger:
+    platform: state
+    entity_id: media_player.kodi
+    to: 'playing'
+    from: 'idle'
+  condition:
+    - condition: state
+      entity_id: sun.sun
+      state: 'below_horizon'
+    - condition: state
+      entity_id: input_boolean.disable_media_player_light_control
+      state: 'off'
+  action:
+    service: scene.turn_on
+    entity_id: scene.lounge_dim
+    
+    

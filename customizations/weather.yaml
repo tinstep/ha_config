@@ -1,0 +1,33 @@
+#################################################################
+## Customize
+#################################################################
+    sensor.bom_melbourne_air_temp_c:
+      friendly_name: Air Temp
+      icon: mdi:thermometer
+    sensor.bom_melbourne_cloud:
+      friendly_name: Cloud
+      icon: mdi:weather-cloudy
+    sensor.bom_melbourne_delta_temp_c:
+      friendly_name: Delta Temp
+    sensor.bom_melbourne_dew_point_c:
+      friendly_name: Dew Point
+    sensor.bom_melbourne_feels_like_c:
+      friendly_name: Feels Like
+    sensor.bom_melbourne_pressure_mb:
+      friendly_name: Pressure Millibars
+      icon: mdi:waves
+    sensor.bom_melbourne_rain_today:
+      friendly_name: Chance of Rain
+      icon: mdi:water-percent
+    sensor.bom_melbourne_relative_humidity:
+      friendly_name: Relative Humidity
+      icon: mdi:water-percent
+    sensor.bom_melbourne_wind_direction:
+      friendly_name: Wind Direction
+      icon: mdi:compass-outline
+    sensor.bom_melbourne_wind_gust_kmh:
+      friendly_name: Wind Gusting
+      icon: mdi:weather-windy-variant
+    sensor.bom_melbourne_wind_speed_kmh:
+      friendly_name: Wind Speed
+      icon: mdi:weather-windy

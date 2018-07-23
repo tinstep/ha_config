@@ -1,0 +1,77 @@
+
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   18/07/2018
+#   @package        :   
+#   @description    :   Testing package
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+
+input_number:
+
+input_select:
+
+sensor:
+
+script:
+  colorloop_start:
+    alias: 'Start LIFX colorloopz'
+    sequence:
+      - service: light.lifx_effect_colorloop
+        data:
+          entity_id: light.rm2_mainlight
+          brightness: 10
+          period: 15
+          spread: 359
+          change: 75
+      - delay:
+          minutes: 1
+#      - service: light.lifx_effect_stop
+#        entity_id: light.rm2_mainlight
+      - service: light.turn_off
+        entity_id: light.rm2_mainlight
+      - service: light.lifx_set_state
+        data:
+          entity_id: light.rm2_mainlight
+          kelvin: 6500
+          brightness_pct: 40
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+- id: test button
+  alias: testing
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001e010bf
+      click_type: single
+  action:
+    service: light.lifx_effect_pulse
+    data:
+      entity_id: light.upstairs_door
+      period: 100
+      mode: solid
+      color_name: red
+      cycles: 1
+      brightness: 150
+      power_on: True
+
+
+- id: lifx_rm2_colour_loop
+  alias: RM2 colourloop - on
+#  initial_state: 'off'
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d00022419ba
+      click_type: long_click_press
+  action:
+    service: script.colorloop_start

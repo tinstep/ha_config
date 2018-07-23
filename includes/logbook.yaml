@@ -1,0 +1,15 @@
+#logbook:
+  exclude:
+    entities:
+      - device_tracker.00163c6da1c6
+      - device_tracker.00163cf1e68d
+      - device_tracker.24a07420eb7f
+      - device_tracker.48d6d5dc93fa
+      - sensor.date
+      - sensor.date__time
+      - sensor.time
+      - sensor.time_utc
+      - sensor.time__date
+      - sensor.beat
+
+

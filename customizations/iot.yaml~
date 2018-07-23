@@ -1,0 +1,49 @@
+#################################################################
+## Customize
+#################################################################
+    ## Xiaomi
+    binary_sensor.motion_sensor_158d0001dc11e8:
+      friendly_name: Motion Hallway
+    binary_sensor.motion_sensor_158d0001a9e425:
+      friendly_name: Motion Kitchen
+    binary_sensor.motion_sensor_158d0001d91e20:
+      friendly_name: Motion Upstairs
+    sensor.illumination_7811dcdee975:
+      friendly_name: Xiaomi Hub Illumination
+    binary_sensor.door_window_sensor_158d0001c2fe64:
+      friendly_name: Sensor Gate
+    light.gateway_light_7811dcdee975:
+      friendly_name: Xiaomi Hub Nightlight
+    switch.plug_158d00023efcae:
+      friendly_name: Plug Eleanor's Room
+    sensor.temperature_158d000208ff21:
+     friendly_name: Ayla's Room Temp
+     icon: mdi:temperature-celsius
+    sensor.temperature_158d00020193b7:
+     friendly_name: Eleanor's Room Temp
+     icon: mdi:temperature-celsius
+    sensor.temperature_158d00022eced8:
+     friendly_name: Our Room Temp
+     icon: mdi:temperature-celsius
+    sensor.temperature_158d000221a57d:
+     friendly_name: Laundry Temp
+    sensor.temperature_158d000221a636:
+     friendly_name: Lounge Temp
+    sensor.humidity_158d000208ff21:
+     friendly_name: Ayla's Room Humidity
+     icon: mdi:waves
+    sensor.humidity_158d00020193b7:
+     friendly_name: Eleanor's Room Humidity
+     icon: mdi:waves
+    sensor.humidity_158d00022eced8:
+     friendly_name: Our Room Humidity
+     icon: mdi:waves
+    sensor.humidity_158d000221a57d:
+     friendly_name: Laundry Humidity
+     icon: mdi:waves
+    sensor.humidity_158d000221a636:
+     friendly_name: Lounge Humidity
+     icon: mdi:waves
+    climate.ayla_room_temp:
+     friendly_name: Ayla's Climate
+

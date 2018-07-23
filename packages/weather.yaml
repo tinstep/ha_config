@@ -1,0 +1,43 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   24/04/2018
+#   @package        :   Weather
+#   @description    :   Weather information for Home Assistant interface
+###############################################################################
+group:
+  weather:
+    name: Weather
+    control: hidden
+    entities:
+      - sensor.bom_melbourne_air_temp_c
+      - sensor.bom_melbourne_cloud
+      - sensor.bom_melbourne_delta_temp_c
+      - sensor.bom_melbourne_dew_point_c
+      - sensor.bom_melbourne_feels_like_c
+      - sensor.bom_melbourne_pressure_mb
+      - sensor.bom_melbourne_rain_today
+#      - sensor.bom_melbourne_rain_trace
+      - sensor.bom_melbourne_relative_humidity
+      - sensor.bom_melbourne_wind_direction
+      - sensor.bom_melbourne_wind_gust_kmh
+      - sensor.bom_melbourne_wind_speed_kmh
+#  rear_garden_switch:
+#    name: Rear Garden
+#    control: hidden
+#    entites:
+#      - switch.fountain
+#      - switch.garden_lights
+##      - switch.garden_dripper
+##      - switch.garden_pots
+#      - switch.recycle_fountain
+
+input_number:
+
+input_select:
+
+sensor:
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:

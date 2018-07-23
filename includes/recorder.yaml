@@ -1,0 +1,14 @@
+#### recorder.yaml ####
+  # Delete events and states older than 3 months and do it every 2 days
+  purge_interval: 2
+  purge_keep_days: 14 
+  db_url: mysql://hauser:dsX4411@zotac.tux:3306/ha?charset=utf8
+  exclude:
+    domains:
+      - automation
+      - weblink
+      - updater
+    entities:
+#     - sun.sun # Don't record sun data
+      - sensor.last_boot # Comes from 'systemmonitor' sensor platform
+      - sensor.date

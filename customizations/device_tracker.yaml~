@@ -1,0 +1,126 @@
+#################################################################
+## Customize
+#################################################################
+#    sensor.bom_melbourne_air_temp_c:
+#      friendly_name: Air Temp
+#      icon: mdi:temperature-celsius
+#    sensor.bom_melbourne_cloud:
+#      friendly_name: Cloud
+#    sensor.bom_melbourne_delta_temp_c:
+#      friendly_name: Delta Temp
+#    sensor.bom_melbourne_dew_point_c:
+#      friendly_name: Dew Point
+#    sensor.bom_melbourne_feels_like_c:
+#      friendly_name: Feels Like
+#    sensor.bom_melbourne_pressure_mb:
+#      friendly_name: Pressure Millibars
+#    sensor.bom_melbourne_rain_today:
+#      friendly_name: Chance of Rain
+#    sensor.bom_melbourne_relative_humidity:
+#      friendly_name: Relative Humidity
+#    sensor.bom_melbourne_wind_direction:
+#      friendly_name: Wind Direction
+#    sensor.bom_melbourne_wind_gust_kmh:
+#      friendly_name: Wind Gusting
+#    sensor.bom_melbourne_wind_speed_kmh:
+#      friendly_name: Wind Speed
+    device_tracker.mozzie_pixel2:
+     friendly_name: Carrick
+    switch.upstairs_ac:
+     friendly_name: Upstairs Aircon
+     icon: mdi:air-conditioner
+     assumed_state: false
+    sensor.upstairs_temp:
+     friendly_name: Upstairs Temp
+     icon: mdi:temperature-celsius
+    media_player.ua46c8000_samsung_dtv_rcr:
+     friendly_name: Lounge TV
+
+    #sabnzbd
+#    sensor.sabnzbd_disk:
+#     icon: mdi:harddisk
+#    sensor.sabnzbd_disk_free:
+#      icon: mdi:harddisk
+#    sensor.sabnzbd_left:
+#      icon: mdi:database-minus
+#    sensor.sabnzbd_queue:
+#      icon: mdi:database-plus
+#    sensor.sabnzbd_speed:
+#      icon: mdi:speedometer
+#    sensor.sabnzbd_status:
+#      icon: mdi:alert-circle-outline
+
+    #deluge
+#    sensor.deluge_down_speed:
+#      friendly_name: Deluge Download Speed
+#      icon: mdi:download-network
+#    sensor.deluge_up_speed:
+#      friendly_name: Deluge Upload Speed
+#      icon: mdi:upload-network
+#    sensor.deluge_status:
+#      friendly_name: Deluge Status
+#      icon: mdi:water
+#    switch.deluge:
+#      friendly_name: Paused / Active
+#      icon: mdi:play-pause
+
+    #speedtest
+#    sensor.speedtest_download:
+#      icon: mdi:arrow-down
+#    sensor.speedtest_upload:
+#      icon: mdi:arrow-up
+#    sensor.speedtest_ping:
+#      icon: mdi:autorenew
+
+    ## Xiaomi
+#    binary_sensor.motion_sensor_158d0001dc11e8:
+#      friendly_name: Hallway Motion
+#    binary_sensor.motion_sensor_158d0001a9e425:
+#      friendly_name: Front Motion
+#    sensor.illumination_7811dcdee975:
+#      friendly_name: Xiaomi Hub Illumination
+#    binary_sensor.door_window_sensor_158d0001c2fe64:
+#      friendly_name: Front Gate Sensor
+#    light.gateway_light_7811dcdee975:
+#      friendly_name: Xiaomi Hub Nightlight
+#    switch.plug_158d00023efcae:
+#      friendly_name: Plug Eleanor's Room
+#    sensor.temperature_158d000208ff21:
+#     friendly_name: Ayla's Room Temp
+#     icon: mdi:temperature-celsius
+#    sensor.temperature_158d00020193b7:
+#     friendly_name: Eleanor's Room Temp
+#     icon: mdi:temperature-celsius
+#    sensor.temperature_158d00022eced8:
+#     friendly_name: Our Room Temp
+#     icon: mdi:temperature-celsius
+#    sensor.temperature_158d000221a57d:
+#     friendly_name: Laundry Temp
+#    sensor.temperature_158d000221a636:
+#     friendly_name: Lounge Temp
+#    sensor.humidity_158d000208ff21:
+#     friendly_name: Ayla's Room Humidity
+#     icon: mdi:waves
+#    sensor.humidity_158d00020193b7:
+#     friendly_name: Eleanor's Room Humidity
+#     icon: mdi:waves
+#    sensor.humidity_158d00022eced8:
+#     friendly_name: Our Room Humidity
+#     icon: mdi:waves
+#    sensor.humidity_158d000221a57d:
+#     friendly_name: Laundry Humidity
+#     icon: mdi:waves
+#    sensor.humidity_158d000221a636:
+#     friendly_name: Lounge Humidity
+#     icon: mdi:waves
+#    climate.ayla_room_temp:
+#     friendly_name: Ayla's Climate
+
+
+# Groups
+#    device_tracker.carrick_p2:
+#    group.carrick:
+#     entity_picture: /local/me.JPG
+#    group.sally:
+#     entity_picture: /local/sal.jpg
+

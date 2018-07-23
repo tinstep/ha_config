@@ -1,0 +1,106 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   18/07/2018
+#   @package        :   
+#   @description    :   Control the door bell
+#   @url            :   
+###############################################################################
+homeassistant:
+#  customize:
+
+group:
+
+input_number:
+
+input_select:
+
+sensor:
+#  - platform: lifx
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+- id: wireless_sw1_dog_start
+  alias: Let a dog bark on long press
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001e010bf
+      click_type: long_click_press
+  action:
+    service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: 78:11:dc:de:e9:75
+      ringtone_id: 22
+      ringtone_vol: 5
+
+- id: wireless_sw1_dog_stop
+  alias: Stop barking immediately on single click
+  trigger:
+    platform: event
+    event_type: click
+    event_data:
+      entity_id: binary_sensor.switch_158d0001e010bf
+      click_type: single
+  action:
+    service: xiaomi_aqara.stop_ringtone
+    data:
+      gw_mac: 78:11:dc:de:e9:75
+
+      
+- id: gate_open_light_blink
+  alias: Blink light when gate opens
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001c2fe64 
+    from: 'off'
+    to: 'on'
+  action:
+    - service: LIGHT.LIFX_EFFECT_PULSE
+      data:
+        entity_id: light.upstairs_server, light.lounge_stereo
+        color_name: red
+        period: 1
+        mode: blink
+        cycles: 8
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: 78:11:dc:de:e9:75
+        ringtone_id: 10
+        ringtone_vol: 4
+        
+        
+        
+- id: turn_on_outside_light
+  alias: turn on security light
+  trigger:
+    platform: state
+    entity_id: binary_sensor.door_window_sensor_158d0001c2fe64
+    from: 'off'
+    to: 'on'
+  condition:
+    - condition: template
+      value_template: "{{ -3.0 > states.sun.sun.attributes.elevation }}"
+  action:
+    - service: light.lifx_effect_pulse
+      data:
+        entity_id: light.front_porch
+        period: 180
+        mode: solid
+        color_name: white
+        cycles: 1
+        brightness: 250
+        power_on: True
+    - service: notify.autohome
+      data:
+        target: "channel/autohome"
+        message: "Outside Light Turned On"
+        title: "Home Assistiant"
+    - service: notify.kodi
+      data:
+        title: "Home Assistant"
+        message: "Front Gate has been opened!"
+        data:
+          displaytime: 10000
+          icon: "warning"

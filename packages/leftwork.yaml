@@ -1,0 +1,47 @@
+###############################################################################
+#   @author         :   Carrick Mortimer
+#   @date           :   11/07/2018
+#   @package        :   leftwork
+#   @description    :   plays a message when carrick leaves work
+#   @url            :   
+###############################################################################
+homeassistant:
+# customize:
+
+group:
+
+input_number:
+
+input_select:
+
+sensor:
+
+###############################################################################
+#                               Automations
+###############################################################################
+automation:
+  - alias: Carrick left Work
+    hide_entity: true
+    trigger:
+    - platform: zone
+      entity_id: device_tracker.mozzie_pixel2
+      event: leave
+      zone: zone.work
+    - platform: state
+      entity_id: input_select.cam_status_dropdown
+      to: 'Just Left Work'
+    condition:
+      - condition: time
+        after: '17:00'
+        before: '20:35'
+      - condition: state
+        entity_id: group.sally
+        state: 'home'
+      - condition: state
+        entity_id: input_boolean.speech_notifications
+        state: 'on'
+    action:
+      - service: tts.google_say
+        entity_id: media_player.lounge_google_home
+        data:
+          message: 'The Master of the house has left work,, the cooking of dinner may commence.'

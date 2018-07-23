@@ -1,0 +1,41 @@
+- id: a_sunset
+  alias: Sunset
+  initial_state: true
+  hide_entity: false
+  trigger:
+  - event: sunset
+    offset: -0:55:00
+    platform: sun
+  action:
+  - data:
+      brightness: 255
+      color_name: white
+      entity_id:
+      - light.lounge_mid
+      - light.lounge_rear
+      - light.lounge_stereo
+      power: true
+      transition: 1000
+    service: light.lifx_set_state
+- id: upstairs_ac_on_temp
+  alias: Upstairs AC turn on
+  initial_state: true
+  hide_entity: false
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.upstairs_temp
+    above: 26
+  action:
+    service: switch.turn_on
+    entity_id: switch.upstairs_ac
+- id: upstairs_ac_on_temp                                                                                             │
+  alias: Upstairs AC turn on                                                                                          │
+  initial_state: true                                                                                                 │
+  hide_entity: false                                                                                                  │
+  trigger:                                                                                                            │
+    platform: numeric_state                                                                                           │
+    entity_id: sensor.upstairs_temp                                                                                   │
+    above: 26                                                                                                         │
+  action:                                                                                                             │
+    service: switch.turn_on                                                                                           │
+    entity_id: switch.upstairs_ac 
