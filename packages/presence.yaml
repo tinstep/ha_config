@@ -1,8 +1,9 @@
 ###############################################################################
-#   @author         :   Carrick Mortimer
+#   @author         :   https://philhawthorne.com/making-home-assistants-presence-detection-not-so-binary/
+#   @updated        :   Carrick Mortimer
 #   @date           :   14/07/2018
 #   @package        :   
-#   @description    :   
+#   @description    :   added ability to use other locations like"work"
 #   @url            :   
 ###############################################################################
 homeassistant:
