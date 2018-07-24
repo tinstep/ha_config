@@ -45,3 +45,11 @@ automation:
         entity_id: media_player.lounge_google_home
         data:
           message: 'The Master of the house has left work,, the cooking of dinner may commence.'
+      - service: notify.autohome
+        data:
+          target: "channel/autohome"
+          message: "Just Left Work"
+          title: "Home Assistiant"
+
+
+
